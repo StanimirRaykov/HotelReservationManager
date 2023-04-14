@@ -1,4 +1,5 @@
 ﻿using HotelReservationManager.Data;
+using HotelReservationManager.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelReservationManager.Repositories
@@ -6,9 +7,9 @@ namespace HotelReservationManager.Repositories
     public class Repository<T> : IRepository<T>
          where T : BaseEntity
     {
-        private readonly ApplicationDbContext _context;
+        private readonly HotelReservationsManagerDbContext _context;
 
-        public Repository(ApplicationDbContext context)
+        public Repository(HotelReservationsManagerDbContext context)
         {
             _context = context;
         }
@@ -50,7 +51,7 @@ namespace HotelReservationManager.Repositories
         public virtual async Task<T> UpdateAsync(T item)
         {
             _context.Set<T>().Update(item);
-            _context.Entry(item).Property(x => x.Created).IsModified = false;
+            _context.Entry(item).Property(x => x.CreatedAt).IsModified = false;
 
             await _context.SaveChangesAsync();
 

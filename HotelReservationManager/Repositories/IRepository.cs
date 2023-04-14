@@ -1,4 +1,4 @@
-﻿using HotelReservationManager.Data;
+﻿using HotelReservationManager.Data.Entities;
 
 namespace HotelReservationManager.Repositories
 {
