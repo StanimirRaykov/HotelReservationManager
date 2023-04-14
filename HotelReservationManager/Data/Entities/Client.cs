@@ -16,6 +16,8 @@
 
         public bool IsAdult { get; set; }
 
+        public virtual Reservation Reservation { get; set; }
+
 
     }
 }

@@ -13,5 +13,7 @@
         public double ChildPrice { get; set; }
 
         public int RoomNumber { get; set; }
+
+        public virtual IEnumerable<Reservation> Reservations { get; set; }
     }
 }
