@@ -7,7 +7,7 @@
 
         }
         public int RoomId { get; set; }
-        public User user { get; set; }
+        public int UserId { get; set; }
 
         public IEnumerable<Client> Clients { get; set; }
 

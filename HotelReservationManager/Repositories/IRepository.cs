@@ -4,11 +4,12 @@ namespace HotelReservationManager.Repositories
 {
         public interface IRepository<T> where T : BaseEntity
         {
-            Task<T> GetByIdAsync(int id);
-            Task<ICollection<T>> GetAllAsync();
-            ICollection<T> GetByFilter(Func<T, bool> predicate);
-            Task<T> CreateAsync(T item);
-            Task<T> UpdateAsync(T item);
-            Task<T> DeleteAsync(int id);
-        }
+            public Task<T> GetById(int id);
+            public IEnumerable<T> GetAll();
+            public IEnumerable<T> GetByFilter(Func<T, bool> predicate);
+            public Task<T> Create(T item);
+            public Task<T> Update(T item);
+            public Task<bool> Delete(T item);
+            public Task<bool> DeleteById(int id);
+    }
 }

@@ -1,7 +1,6 @@
 ﻿using HotelReservationManager.Data;
 using HotelReservationManager.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-
 namespace HotelReservationManager.Repositories
 {
     public class Repository<T> : IRepository<T>
@@ -13,7 +12,7 @@ namespace HotelReservationManager.Repositories
         {
             _context = context;
         }
-        public virtual async Task<T> CreateAsync(T item)
+        public virtual async Task<T> Create(T item)
         {
             _context.Set<T>().Add(item);
             await _context.SaveChangesAsync();
@@ -21,34 +20,38 @@ namespace HotelReservationManager.Repositories
             return item;
         }
 
-        public virtual async Task<T> DeleteAsync(int id)
+        public async Task<bool> DeleteById(int id)
         {
-            var item = await GetByIdAsync(id);
-            _context.Remove(item);
-            await _context.SaveChangesAsync();
-            return item;
+            var item = await GetById(id);
+            if (item != null)
+            {
+                return await this.Delete(item);
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public virtual async Task<ICollection<T>> GetAllAsync()
+        public IEnumerable<T> GetAll()
         {
-            return await _context.Set<T>().ToListAsync();
+            return _context.Set<T>().ToList();
         }
 
-        public virtual ICollection<T> GetByFilter(Func<T, bool> predicate)
+        public IEnumerable<T> GetByFilter(Func<T, bool> predicate)
         {
             return _context.Set<T>()
                 .Where(predicate)
                 .ToList();
         }
 
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetById(int id)
         {
-            return await _context.Set<T>()
-                .FindAsync(id);
+            return await _context.Set<T>().FindAsync(id);
 
         }
 
-        public virtual async Task<T> UpdateAsync(T item)
+        public virtual async Task<T> Update(T item)
         {
             _context.Set<T>().Update(item);
             _context.Entry(item).Property(x => x.CreatedAt).IsModified = false;
@@ -56,6 +59,11 @@ namespace HotelReservationManager.Repositories
             await _context.SaveChangesAsync();
 
             return item;
+        }
+        public async Task<bool> Delete(T item)
+        {
+            _context.Set<T>().Remove(item);
+            return (await _context.SaveChangesAsync()) != 0;
         }
     }
 }

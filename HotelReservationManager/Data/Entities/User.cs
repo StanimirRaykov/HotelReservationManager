@@ -1,6 +1,6 @@
 ﻿namespace HotelReservationManager.Data.Entities
 {
-    public class User :BaseEntity
+    public class User : BaseEntity
     {
         public User() 
         {

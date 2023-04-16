@@ -14,5 +14,7 @@
 
         public int RoomNumber { get; set; }
         public virtual IEnumerable<Reservation> Reservations { get; set; }
+
+        public virtual IEnumerable<Client> Clients { get; set; }    
     }
 }

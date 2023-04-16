@@ -18,6 +18,7 @@
 
         public virtual Reservation Reservation { get; set; }
 
+        public virtual Room Room { get; set; }
 
     }
 }
