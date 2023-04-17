@@ -77,7 +77,7 @@ namespace HotelReservationManager.Services
             return await _reservationRepository.DeleteById(ReservationId);
         }
 
-        public async Task<ICollection<ReservationResponseDTO>> GetAllReservations()
+        public IEnumerable<ReservationResponseDTO> GetAllReservations()
         {
             return _reservationRepository.GetAll()
                 .Select(item => new ReservationResponseDTO()

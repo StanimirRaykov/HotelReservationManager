@@ -60,6 +60,7 @@ namespace HotelReservationManager.Services
             }
 
             item = await _clientRepository.Create(item);
+
             return new ClientResponseDTO()
             {
                 Id = item.Id,
@@ -69,7 +70,7 @@ namespace HotelReservationManager.Services
                 Email = item.Email,
                 IsAdult = item.IsAdult,
                 Room = new RoomPairResponseDTO()
-                {
+                { 
                     RoomId = item.Room.Id,
                     RoomType = item.Room.Type
                 },

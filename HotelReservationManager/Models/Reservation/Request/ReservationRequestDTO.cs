@@ -7,7 +7,7 @@ namespace HotelReservationManager.Models.Reservation.Request
     public class ReservationRequestDTO
     {
         public int RoomId { get; set; }
-        public UserRequestDTO user { get; set; }
+        public int UserId { get; set; }
 
         public IEnumerable<ClientRequestDTO> Clients { get; set; }
 

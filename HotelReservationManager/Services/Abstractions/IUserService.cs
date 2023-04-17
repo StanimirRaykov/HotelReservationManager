@@ -8,13 +8,13 @@ namespace HotelReservationManager.Services.Abstractions
 {
     public interface IUserService
     {
-        public Task<UserResponseDTO> AddUserAsync(UserRequestDTO user);
-        public Task<UserResponseDTO> RemoveUserAsync(int UserId);
+        public Task<UserResponseDTO> AddUser(string username, string password, string firstName, string middleName, string lastName, string ucn, int phoneNumber, string email, DateTime appointmentDate, bool isActive, bool isAdmin);
+        public Task<bool> RemoveUser(int userId);
 
-        public Task<UserResponseDTO> UpdateUserAsync<T>(UserRequestDTO user);
+        public Task<UserResponseDTO> UpdateUser(int userId,string username, string password, string firstName, string midlleName, string lastName, string ucn, int phoneNumber, string email, DateTime appointmentDate, bool isActive, bool isAdmin);
 
-        public Task<ICollection<UserResponseDTO>> GetAllUsers<T>();//ICollection or IEnumerable?
-        public Task<UserResponseDTO> GetUserById(int id);
+        public IEnumerable<UserResponseDTO> GetAll();//ICollection or IEnumerable?
+        public Task<UserResponseDTO> GetUserById(int userId);
 
         //to do ...
     }

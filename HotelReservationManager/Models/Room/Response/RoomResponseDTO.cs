@@ -4,7 +4,7 @@
     {
         public int Size { get; set; }
         public string Type { get; set; } //to do...
-        public bool isTaken { get; set; }
+        public bool IsTaken { get; set; }
         public double AdultPrice { get; set; }
         public double ChildPrice { get; set; }
 

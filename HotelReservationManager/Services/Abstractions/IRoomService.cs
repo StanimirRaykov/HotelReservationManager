@@ -7,16 +7,16 @@ namespace HotelReservationManager.Services.Abstractions
 {
     public interface IRoomService
     {
-        public Task<RoomResponseDTO> AddRoomAsync(RoomRequestDTO room);
+        public Task<RoomResponseDTO> AddRoom(int size, string type, bool isTaken, double adultPrice, double childPrice, int roomNumber);
 
 
-        public Task<RoomResponseDTO> RemoveRoomAsync(int RoomId);
+        public Task<bool> RemoveRoom(int roomId);
 
-        public Task<RoomResponseDTO> UpdateRoomAsync(int RoomId, RoomRequestDTO room);
+        public Task<RoomResponseDTO> UpdateRoom(int roomId, int size, string type, bool isTaken, double adultPrice, double childPrice, int roomNumber);
 
-        public Task<ICollection<RoomResponseDTO>> GetAllAsync();//ICollection or IEnumerable?
+        public IEnumerable<RoomResponseDTO> GetAll();//ICollection or IEnumerable?
 
-        public Task<RoomResponseDTO> GetRoomByIdAsync(int id);
+        public Task<RoomResponseDTO> GetRoomById(int id);
 
         //To do...
     }
